@@ -16,13 +16,14 @@ import os
 sys.path.append(os.path.abspath("SO_site-packages"))
 
 # To clean the first clipboard available - avoid instant download
-win32clipboard.OpenClipboard()
-win32clipboard.EmptyClipboard()
-win32clipboard.CloseClipboard()
+def cleanClipboard():
+    win32clipboard.OpenClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.CloseClipboard()
 
 ydl_opts = {
     'format': 'bestaudio/best',
-    'outtmpl': '%(title)s.%(ext)s',
+    'outtmpl': 'output/%(title)s.%(ext)s',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -47,7 +48,7 @@ def downloadMusic(value):
 
 
 class ClipboardWatcher(threading.Thread):
-    def __init__(self, predicate, callback, pause=5.):
+    def __init__(self, predicate, callback, pause=1.):
         super(ClipboardWatcher, self).__init__()
         self._predicate = predicate
         self._callback = callback
@@ -72,12 +73,13 @@ class ClipboardWatcher(threading.Thread):
 def main():
     watcher = ClipboardWatcher(is_url_but_not_bitly,
                                print_to_stdout,
-                               5.)
+                               1.)
     watcher.start()
 
 
 if __name__ == '__main__':
     try:
+        cleanClipboard()
         main()
     except KeyboardInterrupt:
         print('Interrupted')
