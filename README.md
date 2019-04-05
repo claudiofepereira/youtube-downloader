@@ -5,6 +5,6 @@ Able to start the download automatically simply by copying the link from youtube
 
 ### To Implement.
 
-- [ ] Multiple downloads at once.
+- [X] Multiple downloads at once.
 - [ ] Verification that the link copied exists.
 - [ ] Read about playlists download option.
