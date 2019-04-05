@@ -1,5 +1,10 @@
-## Early stages
+###  [In construction]
 
-Python script made to download musics using the Clipboard.
+Simple python script to automate youtube musics downloading.
+Able to start the download automatically simply by copying the link from youtube.
 
-Only downloads 1 music at a time, right now. Trying to understand how multithreading works to make it possible to download multiple musics at the same time.
+### To Implement.
+
+- [ ] Multiple downloads at once.
+- [ ] Verification that the link copied exists.
+- [ ] Read about playlists download option.
