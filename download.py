@@ -19,12 +19,12 @@ def cleanClipboard():
 
 ydl_opts = {
     'format': 'bestaudio/best',
-    'outtmpl': 'downloaded-musics/%(title)s.%(ext)s',
+    'outtmpl': 'musics/%(title)s.%(ext)s',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
         'preferredquality': '192',
-    }],
+    }]
 }
 
 
@@ -32,9 +32,21 @@ def printUrlFound(clipboard_content):
     print("Found url: %s" % str(clipboard_content))
 
 
+def verifyUrlExists(url):
+    ies = youtube_dl.extractor.gen_extractors()
+    for ie in ies:
+        if ie.suitable(url) and ie.IE_NAME != 'generic':
+            # Site has dedicated extractor
+            return True
+    return False
+
+
 def downloadMusic(url, delay):
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
+    try:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+    except youtube_dl.DownloadError:
+        return youtube_dl.DownloadError
 
 
 if __name__ == '__main__':
