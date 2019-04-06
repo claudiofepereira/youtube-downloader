@@ -28,7 +28,7 @@ ydl_opts = {
     'progress_hooks': [my_hook],
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
+        'preferredcodec': 'm4a',
         'preferredquality': '192',
     }]
 }
