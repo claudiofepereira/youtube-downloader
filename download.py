@@ -36,7 +36,7 @@ ydl_opts = {
 
 def printUrlFound(clipboard_content):
     print()
-    print("Found url: %s" % str(clipboard_content))
+    print("Found url: {}" .format(clipboard_content))
 
 
 def downloadMusic(url, delay):
