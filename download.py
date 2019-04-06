@@ -16,10 +16,16 @@ def cleanClipboard():
     win32clipboard.EmptyClipboard()
     win32clipboard.CloseClipboard()
 
+def my_hook(d):
+    if d['status'] == 'finished':
+        print("Done downloading -> {}".format(d['filename']))
 
 ydl_opts = {
     'format': 'bestaudio/best',
     'outtmpl': 'musics/%(title)s.%(ext)s',
+    'quiet': True,
+    'download_archive': 'info/downloaded_songs.txt',
+    'progress_hooks': [my_hook],
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -29,16 +35,8 @@ ydl_opts = {
 
 
 def printUrlFound(clipboard_content):
+    print()
     print("Found url: %s" % str(clipboard_content))
-
-
-def verifyUrlExists(url):
-    ies = youtube_dl.extractor.gen_extractors()
-    for ie in ies:
-        if ie.suitable(url) and ie.IE_NAME != 'generic':
-            # Site has dedicated extractor
-            return True
-    return False
 
 
 def downloadMusic(url, delay):
