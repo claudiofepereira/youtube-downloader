@@ -16,9 +16,11 @@ def cleanClipboard():
     win32clipboard.EmptyClipboard()
     win32clipboard.CloseClipboard()
 
+
 def my_hook(d):
     if d['status'] == 'finished':
         print("Done downloading -> {}".format(d['filename']))
+
 
 ydl_opts = {
     'format': 'bestaudio/best',
