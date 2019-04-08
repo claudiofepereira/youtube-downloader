@@ -1,5 +1,3 @@
-###  [On Pause]
-
 - Simple python script to automate youtube musics downloading.
 - Download musics from youtube simply by copying the url.
 
