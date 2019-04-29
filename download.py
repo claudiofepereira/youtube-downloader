@@ -1,4 +1,4 @@
-#!/bin/env python
+#! python3
 
 import win32clipboard
 import pyperclip
